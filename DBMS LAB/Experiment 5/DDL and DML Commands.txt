@@ -1,0 +1,25 @@
+create database busticketreservation;
+use busticketreservation;
+show tables;
+
+create table bus(busno int primary key,source varchar(20),dest varchar(20));
+show tables;
+insert into bus values(101,'Hyd','Chennai'),(102,'Hyd','goa'),(103,'delhi','pune');
+alter table bus add PNo int;
+select * from bus;
+
+create table passenger(PNum int(10) primary key,PName varchar(30),PAge int,PSex char(10));
+insert into passenger values(100,'Shivani',19,'F'),(101,'Shreeya',20,'F'),(102,'Shravya',19,'F'),(103,'Barakam',19,'F');
+delete from passenger where PNum = 102;
+select * from passenger;
+
+create table ticket(TNum int primary key,JourneyDate Date,Age real,Gender varchar(10),Source varchar(10),Time varchar(10),Dest varchar(10));
+insert into ticket values(1,'2021-06-22',19,'F','Hyd','10:45','Karnataka');
+update ticket set Dest = 'Bangkok' where TNum = 1;
+alter table ticket modify Age int;
+select * from ticket;
+
+create table reservation(PNum int, foreign key(PNum) references passenger(PNum),JourneyDate Date,Address varchar(40),ContactNo int,Status char(2));
+insert into reservation values(100,'2021-06-10','ganga',90548908,'R');
+alter table reservation drop Status;
+select * from reservation;
