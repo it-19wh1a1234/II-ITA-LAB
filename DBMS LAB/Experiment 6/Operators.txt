@@ -1,0 +1,19 @@
+create database customers;
+use customers;
+create table customer(cust_id int primary key,cust_name varchar(20));
+insert into customer values(1,'shreeya');
+insert into customer values(2,'sriansh');
+insert into customer values(3,'shivani');
+
+create table reservation(res_id int primary key,cust_id int,day date,foreign key(cust_id)references customer(cust_id));
+insert into reservation values(101,1,'2021-06-06');
+insert into reservation values(102,2,'2020-06-01');
+select * from customer;
+select * from reservation;
+select cust_id from customer where cust_id <> all(select cust_id from reservation);
+select cust_id from customer where cust_id = any(select cust_id from reservation);
+select cust_id from customer where cust_id = some(select cust_id from reservation);
+select cust_id from customer where cust_id in(select cust_id from reservation);
+select cust_id from customer where cust_id not in (select cust_id from reservation);
+select * from reservation where res_id in (101,102);
+select * from customer where cust_id in (2,3);
