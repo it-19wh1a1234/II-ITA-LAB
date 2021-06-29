@@ -15,5 +15,9 @@ select cust_id from customer where cust_id = any(select cust_id from reservation
 select cust_id from customer where cust_id = some(select cust_id from reservation);
 select cust_id from customer where cust_id in(select cust_id from reservation);
 select cust_id from customer where cust_id not in (select cust_id from reservation);
-select * from reservation where res_id in (101,102);
-select * from customer where cust_id in (2,3);
+select res_id from reservation where res_id in (101,102);
+select cust_id from customer where cust_id in (2,3);
+select cust_id as id,cust_name as name from customer where cust_id in(select cust_id from reservation where cust_id > 2);
+select * from customer where cust_id  between 1 and 3;
+select cust_id from customer where cust_id < 3 or  cust_id in(select cust_id from reservation where day = '2021-06-06');
+select cust_id from customer where cust_id < 3 and  cust_id in(select cust_id from  reservation where day = '2021-06-06');
